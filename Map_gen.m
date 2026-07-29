@@ -17,34 +17,42 @@ map=zeros(pixel_num_x, pixel_num_y);
 obs_x=[];
 
 % Definition of Obstacle 1
-%  a rectangle with x_min=0.2 m, y_min=0.2 m, \delta x=0.2 m, \delta y= 0.2 m 
+%  a rectangle with x_min=0.4 m, y_min=0.0 m, \delta x=0.1 m, \delta y= 0.45 m 
+% (scaled by 100: x from 40 to 84 -> indices 41:85? but matching meters to pixels:)
+% x indices: x_min*scale+1 to (x_min+delta_x)*scale
+% y indices: y_min*scale+1 to (y_min+delta_y)*scale
 
-for ii=21:40
-    for jj=21:40
-       map(ii,jj)=1;
-       obs_x = [obs_x, [(ii-0.5)* cell_size ; (jj-0.5)* cell_size ]];
+x_min = 0.4; y_min = 0.0; dx = 0.1; dy = 0.45;
+ix1 = max(1, floor(x_min*scale)+1);
+ix2 = min(pixel_num_x, floor((x_min+dx)*scale));
+iy1 = max(1, floor(y_min*scale)+1);
+iy2 = min(pixel_num_y, floor((y_min+dy)*scale));
+
+for ii = ix1:ix2
+    for jj = iy1:iy2
+        map(ii,jj) = 1;
+        obs_x = [obs_x, [(ii-0.5)*cell_size ; (jj-0.5)*cell_size]];
     end
 end
 
 % Definition of Obstacle 2
-%  a rectangle with x_min=0.2 m, y_min=0.6 m, \delta x=0.2 m, \delta y= 0.2 m 
-for ii=21:40
-    for jj=61:80
-       map(ii,jj)=1;
-       obs_x = [obs_x, [(ii-0.5)* cell_size ; (jj-0.5)* cell_size ]];
+%  a rectangle with x_min=0.4 m, y_min=0.65 m, \delta x=0.1 m, \delta y= 0.45 m 
+% (scaled by 100: x from 40 to 84 -> indices 41:85? but matching meters to pixels:)
+% x indices: x_min*scale+1 to (x_min+delta_x)*scale
+% y indices: y_min*scale+1 to (y_min+delta_y)*scale
+
+x_min = 0.4; y_min = 0.65; dx = 0.1; dy = 0.45;
+ix1 = max(1, floor(x_min*scale)+1);
+ix2 = min(pixel_num_x, floor((x_min+dx)*scale));
+iy1 = max(1, floor(y_min*scale)+1);
+iy2 = min(pixel_num_y, floor((y_min+dy)*scale));
+
+for ii = ix1:ix2
+    for jj = iy1:iy2
+        map(ii,jj) = 1;
+        obs_x = [obs_x, [(ii-0.5)*cell_size ; (jj-0.5)*cell_size]];
     end
 end
-
-
-% Definition of Obstacle 3
-%  a rectangle with x_min=0.5 m, y_min=0.5 m, \delta x=0.2 m, \delta y= 0.2 m 
-for ii=51:70
-    for jj=51:70
-       map(ii,jj)=1;
-       obs_x = [obs_x, [(ii-0.5)* cell_size ; (jj-0.5)* cell_size ]];
-    end
-end
-
 
 % % % plot environment
 % % figure 
