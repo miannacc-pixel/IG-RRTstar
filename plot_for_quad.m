@@ -5,7 +5,7 @@ close all
 
 % Log in the data
  %load('data/Multi_N5000_alpha_3_safety_09')
-load('data/Multi_N_Ent_2000_alpha_01_safety_09')
+load('data/Multi_N_Ent_2000_alpha_02_safety_09')
 obstacle_edge = obstacle_quad();
 % start the figure
 figure
@@ -27,7 +27,7 @@ edges = [obstacle_edge(:).start];
 edges_re = reshape(edges,[2,numel(edges)/2]);
 % You need to designate the number of vertices of each obstacle here
 % The first element should be 0
-num_vert = [0, 4, 4, 4];
+num_vert = [0, 4, 4];
 
 
 % goal region patch : green
@@ -138,6 +138,5 @@ xticks([0 0.2 0.4 0.6 0.8 1])
 %text(0.06,0.45, 'Start','FontSize', 22);
 %text(0.71, 0.08, 'Goal','FontSize', 22);
 
-text(0.04,0.95, 'Start','FontSize', 22);
-text(0.61, 0.06, 'Goal','color',[0 0.5 0],'FontSize', 22);
-
+%text(0.04,0.95, 'Start','FontSize', 22);
+%text(0.61, 0.06, 'Goal','color',[0 0.5 0],'FontSize', 22);
