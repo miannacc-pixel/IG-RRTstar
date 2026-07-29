@@ -85,13 +85,13 @@ gamma_star = (2+2/dim)^(1/dim)* (miu_X_free/zeta_d)*(1/dim);
 
 
 % Weight on information cost
-alpha = dum;
+alpha = 0.2;
 
 % The gain of noise (In the paper, we denote as "W")
 R = (1/1000)*eye(2);
 
-% 90 percent confidence bound
-chi = chi2inv(0.9,2);
+% 80 percent confidence bound
+chi = chi2inv(0.8,2);
 
 %% Enviroment definition and Properties
 
@@ -103,18 +103,18 @@ chi = chi2inv(0.9,2);
         [obs_x, cell_size] = Map_gen();
         
         % Target(final) area [xmin, xmax; ymin, ymax]
-        target = [0.8, 0.9; 0, 0.1]; 
+        target = [0.8, 0.9; 0.1, 0.2]; 
 
         % Path planning area
         bound(1).x = [0,1]; % X direction
         bound(2).x = [0,1]; % Y direction
         
         % The acceptable range for the eigenvalues of the sampled covariance matrix
-        bound(1).P = [10^-9,10^-1]; 
-        bound(2).P = [10^-9,10^-1];
+        bound(1).P = [10^-9,10^-3]; 
+        bound(2).P = [10^-9,10^-3];
         
         % The position of the initial node
-        node(1).x = [0.1, 0.9];
+        node(1).x = [0.1, 0.1];
 
 %% Metric selection
 
@@ -125,7 +125,8 @@ chi = chi2inv(0.9,2);
 % %   Metric_id = 3; % If Hellinger distance is used
 
 %% The setting for initial node
-node(1).P = [bound(1).P(1),0;0,bound(2).P(1)];
+Pinit = 1e-4 * eye(2);
+node(1).P = Pinit;
 node(1).parent = 0;
 node(1).value = 0;
 
