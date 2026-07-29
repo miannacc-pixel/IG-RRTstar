@@ -10,6 +10,7 @@ obstacle_edge = obstacle_quad();
 % start the figure
 figure
 hold on
+
 axis equal
 xlim([bound(1).x(1) bound(1).x(2)]);
 ylim([bound(2).x(1) bound(2).x(2)]);
