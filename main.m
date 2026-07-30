@@ -83,7 +83,6 @@ miu_X_free=1;
 zeta_d= pi; % volume of unit ball in dim-dimensional space  
 gamma_star = (2+2/dim)^(1/dim)* (miu_X_free/zeta_d)*(1/dim);
 
-
 % Weight on information cost
 alpha = 0.2;
 
